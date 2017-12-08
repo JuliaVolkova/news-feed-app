@@ -1,20 +1,36 @@
 import React, { Component } from 'react';
 import '../App.css';
 import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router';
+import ExampleComponent from '../example'
 
 class App extends Component {
     constructor() {
         super();
+
+        this.state ={
+            url: '',
+            image: '',
+            section: '',
+            title: '',
+            description: '',
+            publishedDate: '',
+            author: ''
+        }
     }
 
-  render() {
-    return (
-        <div className="App">
-            <Header />
-            <Main />
-        </div>
-    );
-  }
+      render() {
+        return (
+            <div className="App">
+                <Header />
+                <Switch>
+                    <Route exact path="/" component={ Main } />
+                    <Route path="/comments" component={ CommentBox } />
+                    <Route path="/example" component={ ExampleComponent }/>
+                </Switch>
+            </div>
+        );
+      }
 }
 
 class Header extends Component {
@@ -24,12 +40,12 @@ class Header extends Component {
                 <h1>news feed</h1>
                 <p>Read top news for free</p>
                 <ul className="main-navigation">
-                    <li>World</li>
-                    <li>Politics</li>
-                    <li>Science</li>
-                    <li>Technology</li>
-                    <li>Art</li>
-                    <li>Books</li>
+                    <li><a href="#">World</a></li>
+                    <li><a href="#">Politics</a></li>
+                    <li><a href="#">Science</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#">Art</a></li>
+                    <li><a href="#">Books</a></li>
                 </ul>
             </div>
         )
@@ -42,15 +58,15 @@ class Main extends Component {
             <div className="news-wrapper">
                 <h2>top news</h2>
                 <ul className="news-grid">
-                    <li className="news">new-1</li>
-                    <li className="news">new-2</li>
-                    <li className="news">new-3</li>
-                    <li className="news">new-4</li>
-                    <li className="news">new-5</li>
-                    <li className="news">new-6</li>
-                    <li className="news">new-7</li>
-                    <li className="news">new-8</li>
-                    <li className="news">new-9</li>
+                    <li className="news"><a href="#">new-1</a></li>
+                    <li className="news"><a href="#">new-2</a></li>
+                    <li className="news"><a href="#">new-3</a></li>
+                    <li className="news"><a href="#">new-4</a></li>
+                    <li className="news"><a href="#">new-5</a></li>
+                    <li className="news"><a href="#">new-6</a></li>
+                    <li className="news"><a href="#">new-7</a></li>
+                    <li className="news"><a href="#">new-8</a></li>
+                    <li className="news"><a href="#">new-9</a></li>
                 </ul>
             </div>
         )
@@ -75,7 +91,7 @@ class CommentBox extends Component {
 class NewsItem extends Component {
     render() {
         return (
-            <article>
+            <article className="current-article">
                 <h3>title</h3>
                 <time>дата публикации: 06-12-2017</time>
                 <p>something about news-item</p>
@@ -89,9 +105,9 @@ class NewsItem extends Component {
 class CommentForm extends Component {
     render() {
         return (
-           <form>
+           <form className="comment-form">
                 <label>Add new comment</label>
-               <textarea>a left an awesome comment! I'm cool</textarea>
+               <textarea placeholder="I left an awesome comment! I'm cool" />
                <button>post comment</button>
            </form>
         )
