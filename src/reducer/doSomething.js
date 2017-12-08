@@ -4,6 +4,10 @@ const doLog = (state={}, action) => {
             return {
                 id: action.id
             };
+        default:
+            return {
+                message: 'hello! I am reducer'
+            }
     }
 };
 
