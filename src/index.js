@@ -2,25 +2,47 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
-import { Provider } from 'react-redux';
-import { createStore} from 'redux';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
 import doLog from './reducer/doSomething';
-import { dispatch } from 'redux';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { AppContainer } from 'react-hot-loader';
-import doExample from './actionCreators/actionCreators';
+import {dispatch} from 'redux';
+import {BrowserRouter as Router} from 'react-router-dom';
+import {AppContainer} from 'react-hot-loader';
+import createSagaMiddleware from 'redux-saga';
+import { fetchArticles } from "./sagas/saga";
 
-const store = createStore(doLog, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const initialState = {
+    articles: [
+        {
+            title: 'name',
+            url: 'vk.ru',
+            byline: 'somebody',
+            abstract: 'do-dod-dod-dooo'
+        }
+    ],
+    currentTopic: '',
+    topics: [
+        "World",
+        "Politics",
+        "Science",
+        "Technology",
+        "Books",
+        "Art"
+    ],
+};
 
-store.dispatch(doExample());
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(doLog, initialState, applyMiddleware(sagaMiddleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+sagaMiddleware.run(fetchArticles);
+export default store;
 
 const render = Component => {
     ReactDOM.render(
         <Provider store={store}>
             <Router>
-            <AppContainer>
-                <Component />
-            </AppContainer>
+                <AppContainer>
+                    <Component/>
+                </AppContainer>
             </Router>
         </Provider>,
         document.getElementById('root'),
@@ -29,5 +51,7 @@ const render = Component => {
 
 render(App);
 if (module.hot) {
-    module.hot.accept('./components/App', () => { render(App) })
+    module.hot.accept('./components/App', () => {
+        render(App)
+    })
 }

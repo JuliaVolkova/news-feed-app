@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
-import { dispatch } from 'redux';
+import store from './index';
 import './App.css';
-
-
+// import doExample from "./actionCreators/actionCreators";
 
 class ExampleComponent extends Component {
+
+    handleClick() {
+        console.log('working!!');
+        store.dispatch( {});
+    }
 
     render() {
         return(
             <div className="example-container">
-                <button className="big-button" type="button>" onClick={ console.log('working!!')} >
+                <button className="big-button" type="button>" onClick={ this.handleClick }  >
                     click me!
                 </button>
             </div>
