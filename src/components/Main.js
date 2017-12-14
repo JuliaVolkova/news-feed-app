@@ -1,24 +1,36 @@
 import {connect} from "react-redux";
-import React from 'react';
+import React, {Component} from 'react';
 import Article from "./Article";
+import {getArticles} from "../actionCreators/actionCreators";
 
-const Main = ({ articles = [] }) => (
-    <div className="news-wrapper">
-        <h2>top news</h2>
-        <ul className="news-grid">
-            { console.log(articles) }
-            { articles.map((article, index) => (
-                <li key={index}>
-                    <Article {...article}/>
-                </li>
-            )) }
-        </ul>
-    </div>
-);
+class Main extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-const mapStateToProps = state => {
-    console.log(state);
-    return {articles: state.articles};
+    componentWillMount() {
+        this.props.dispatch(getArticles(this.props.match.params.topic));
+    }
+
+    render() {
+        return (
+            <div className="news-wrapper">
+                <h2>top news</h2>
+                <ul className="news-grid">
+                    {this.props.articles.map((article, index) => (
+                        <li key={index} className="news">
+                            <Article {...article}/>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        )
+    };
+}
+
+const mapStateToProps = (state) => {
+    console.log('Main', state);
+    return {articles: state.putArticlesToStore.articles || []};
 };
 
 export default connect(mapStateToProps)(Main);
