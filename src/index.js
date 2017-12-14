@@ -10,12 +10,13 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import {AppContainer} from 'react-hot-loader';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from "./sagas/saga";
+import logger from 'redux-logger'
 
 const initialState = {};
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
-const middleware = applyMiddleware(sagaMiddleware);
+const middleware = applyMiddleware(sagaMiddleware, logger);
 
 const store = createStore(combineReducer, initialState, composeEnhancers(middleware));
 sagaMiddleware.run(rootSaga);
