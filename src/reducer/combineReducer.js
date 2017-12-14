@@ -1,8 +1,6 @@
 import { combineReducers } from 'redux';
-import changeTopic from './doSomething';
+import * as reducers from './changeTopicReducer';
 
-const combineReducer = combineReducers({
-    changeTopic
-});
+const combineReducer = combineReducers(reducers);
 
 export default combineReducer;
