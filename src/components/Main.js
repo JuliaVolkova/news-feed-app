@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Article from "./Article";
+import {Link} from "react-router-dom";
 
 class Main extends Component {
     constructor(props) {
@@ -26,7 +27,9 @@ class Main extends Component {
                 <ul className="news-grid">
                     {this.props.articles.map((article, index) => (
                         <li key={index} className="news">
-                            <Article {...article}/>
+                            <Link to={`/article/${index}`}>
+                                <Article {...article}/>
+                            </Link>
                         </li>
                     ))}
                 </ul>
