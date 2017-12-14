@@ -1,12 +1,11 @@
 export const putArticlesToStore = (state = {}, action) => {
     switch (action.type) {
         case 'ARTICLES_TO_STORE':
-            const assign = Object.assign({}, {articles: action.articles});
-            console.log('in reducer', action, assign);
-            return assign;
-        case 'GET_ARTICLES':
-            return {};
+            return Object.assign({}, state, {articles: action.articles});
+        case 'ARTICLE_TO_STORE':
+            return Object.assign({}, state, {article: action.article});
         default:
             return state;
     }
 };
+
