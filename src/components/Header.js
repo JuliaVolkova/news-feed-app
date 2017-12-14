@@ -1,22 +1,29 @@
 import React from 'react';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
+import {NavLink} from 'react-router-dom'
 
-const Header = ({topics = []}) => (
-    <div className="header-wrapper">
+const Header = ({topics = [], current}) => (
+    <div className='header-wrapper'>
         <h1>news feed</h1>
         <p>Read top news for free</p>
-        <ul className="main-navigation">
-            { topics.map((topic, index) => <li key={index}><a href="#">{topic}</a></li>) }
+        <ul className='main-navigation'>
+            {topics.map((topic, index) => (
+                    <li key={index}><NavLink to={`/${topic.toLowerCase()}` }>{topic}</NavLink></li>
+                )
+            )}
         </ul>
     </div>
 );
 
-const mapStateToProps = state => {
-    console.log(state);
-    return {
-        topics: state.topics,
-        current: state.currentTopic
-    };
-};
+const mapStateToProps = state => ({
+    topics: [
+        'World',
+        'Politics',
+        'Science',
+        'Technology',
+        'Books',
+        'Art'
+    ],
+});
 
 export default connect(mapStateToProps)(Header);
