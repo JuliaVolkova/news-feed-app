@@ -6,6 +6,7 @@ import {MainWrapper} from './Main-wrapper';
 import {Header} from "./Header";
 import CommentBox from "./CommentBox";
 import Redirect from "react-router-dom/es/Redirect";
+import ArticleWrapper from "./Article-wrapper";
 
 class App extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class App extends Component {
                 <Header/>
                 <Switch>
                     <Redirect exact from="/" to="/all-sections"/>
-                    <Route path="/comments" component={CommentBox}/>
+                    <Route path="/article/:id" component={ArticleWrapper}/>
                     <Route path="/example" component={ExampleComponent}/>
                     <Route path="/:topic" render={(urlProps) => <MainWrapper {...urlProps}/>}/>
                 </Switch>
