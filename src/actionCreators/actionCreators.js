@@ -8,10 +8,16 @@ export const articlesToStore = (articles = []) => ({
     articles
 });
 
-export const watchNewsItem = id => {
+export const articleToStore = (article = {}) => ({
+    type: 'ARTICLE_TO_STORE',
+    article
+});
+
+export const watchNewsItem = (id, topic) => {
     return {
         type: 'WATCH_NEWS',
-        id
+        id,
+        topic
     };
 };
 
