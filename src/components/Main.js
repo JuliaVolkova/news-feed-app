@@ -1,8 +1,6 @@
-import {connect} from "react-redux";
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Article from "./Article";
-import {getArticles} from "../actionCreators/actionCreators";
 
 class Main extends Component {
     constructor(props) {
@@ -10,12 +8,15 @@ class Main extends Component {
     }
 
     componentWillMount() {
-        this.props.dispatch(getArticles(this.props.match.params.topic));
-        console.log('in console', this.props.match.params.topic);
+        this.props.loadData(this.props.match.params.topic);
     }
 
     componentWillReceiveProps(nextProps) {
-
+        console.log('props', this.props, nextProps);
+        if(this.props.match.params.topic !== nextProps.match.params.topic) {
+            console.log('what is happing?');
+            this.props.loadData(nextProps.match.params.topic);
+        }
     }
 
     render() {
@@ -38,9 +39,5 @@ Main.propTypes = {
     articles: PropTypes.array
 };
 
-const mapStateToProps = (state) => {
-    console.log('Main', state);
-    return {articles: state.putArticlesToStore.articles || []};
-};
+export default Main;
 
-export default connect(mapStateToProps)(Main);
