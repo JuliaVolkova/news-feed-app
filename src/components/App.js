@@ -13,12 +13,11 @@ class App extends Component {
     }
 
     render() {
-        console.log();
         return (
             <div className="App">
                 <Header/>
                 <Switch>
-                    <Route exact path="/" component={Main}/>
+                    <Route exact path="/:topic" component={Main}/>
                     <Route path="/comments" component={CommentBox}/>
                     <Route path="/example" component={ExampleComponent}/>
                 </Switch>
@@ -27,6 +26,4 @@ class App extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({topicList: state.topicList});
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);
