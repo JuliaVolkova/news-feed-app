@@ -13,7 +13,7 @@ const topics = [
 ];
 
 export const Header = () => (
-    <div className='header-wrapper'>
+    <nav className='header-wrapper'>
         <h1>news feed</h1>
         <p>Read top news for free</p>
         <ul className='main-navigation'>
@@ -22,7 +22,7 @@ export const Header = () => (
                 )
             )}
         </ul>
-    </div>
+    </nav>
 );
 
 Header.propTypes = {
