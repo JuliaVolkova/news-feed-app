@@ -8,7 +8,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const mapStateToProps = (state) => {
-    console.log('Main', state);
     return {articles: state.putArticlesToStore.articles || []};
 };
 export const MainWrapper = connect(mapStateToProps, mapDispatchToProps)(Main);
