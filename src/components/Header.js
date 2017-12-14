@@ -1,6 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {NavLink} from 'react-router-dom'
 import PropTypes from 'prop-types';
 import Link from "react-router-dom/es/Link";
 
@@ -30,16 +28,3 @@ export const Header = () => (
 Header.propTypes = {
     topics: PropTypes.array
 };
-
-// function mapStateToProps(state) {
-//     return {
-//         newsFeed: state.newsFeed,
-//     };
-// };
-//
-// function mapDispatchToProps(dispatch, {tag}) {
-//     dispatch(loadNews(tag || 'all-sections'));
-//     return {};
-// };
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(NewsContainer);
