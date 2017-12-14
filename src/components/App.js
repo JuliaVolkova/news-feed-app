@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
 import '../App.css';
-import {connect} from 'react-redux';
 import {Route, Switch} from 'react-router';
 import ExampleComponent from '../example'
-import Main from './Main';
-import Header from "./Header";
+import {MainWrapper} from './Main-wrapper';
+import {Header} from "./Header";
 import CommentBox from "./CommentBox";
 
 class App extends Component {
@@ -17,7 +16,7 @@ class App extends Component {
             <div className="App">
                 <Header/>
                 <Switch>
-                    <Route exact path="/:topic" component={Main}/>
+                    <Route path="/:topic" render={(urlProps) => <MainWrapper {...urlProps}/>} />
                     <Route path="/comments" component={CommentBox}/>
                     <Route path="/example" component={ExampleComponent}/>
                 </Switch>
@@ -26,4 +25,5 @@ class App extends Component {
     }
 }
 
-export default connect()(App);
+export default App;
+
