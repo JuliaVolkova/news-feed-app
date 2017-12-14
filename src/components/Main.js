@@ -13,7 +13,7 @@ class Main extends Component {
 
     componentWillReceiveProps(nextProps) {
         console.log('props', this.props, nextProps);
-        if(this.props.match.params.topic !== nextProps.match.params.topic) {
+        if (this.props.match.params.topic !== nextProps.match.params.topic) {
             console.log('what is happing?');
             this.props.loadData(nextProps.match.params.topic);
         }
@@ -40,4 +40,3 @@ Main.propTypes = {
 };
 
 export default Main;
-

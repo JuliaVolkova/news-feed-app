@@ -18,7 +18,7 @@ export const Header = () => (
         <p>Read top news for free</p>
         <ul className='main-navigation'>
             {topics.map((topic, index) => (
-                    <li key={index} ><Link to={`/${topic.toLowerCase()}` }>{topic}</Link></li>
+                    <li key={index}><Link to={`/${topic.toLowerCase()}`}>{topic}</Link></li>
                 )
             )}
         </ul>

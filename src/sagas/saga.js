@@ -1,4 +1,4 @@
-import {takeEvery, all, put} from "redux-saga/effects";
+import {all, put, takeEvery} from "redux-saga/effects";
 import {articlesToStore} from "../actionCreators/actionCreators";
 
 export function* fetchArticles(action) {
@@ -10,7 +10,14 @@ export function* fetchArticles(action) {
     const response = yield fetch(url);
     const post = yield response.json();
     const articles = post.results.map(
-        ({title, url, byline, abstract, published_date, media}) => ({title, url, byline, abstract, published_date, media})
+        ({title, url, byline, abstract, published_date, media}) => ({
+            title,
+            url,
+            byline,
+            abstract,
+            published_date,
+            media
+        })
     );
     yield put(articlesToStore(articles))
 }
@@ -19,6 +26,6 @@ export function* waitGetArticles() {
     yield takeEvery('GET_ARTICLES', fetchArticles);
 }
 
-export default function* rootSaga(){
+export default function* rootSaga() {
     yield all([waitGetArticles()]);
 }
