@@ -1,5 +1,6 @@
 import {connect} from "react-redux";
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import Article from "./Article";
 import {getArticles} from "../actionCreators/actionCreators";
 
@@ -10,6 +11,11 @@ class Main extends Component {
 
     componentWillMount() {
         this.props.dispatch(getArticles(this.props.match.params.topic));
+        console.log('in console', this.props.match.params.topic);
+    }
+
+    componentWillReceiveProps(nextProps) {
+
     }
 
     render() {
@@ -27,6 +33,10 @@ class Main extends Component {
         )
     };
 }
+
+Main.propTypes = {
+    articles: PropTypes.array
+};
 
 const mapStateToProps = (state) => {
     console.log('Main', state);
