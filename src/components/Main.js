@@ -27,7 +27,7 @@ class Main extends Component {
                 <ul className="news-grid">
                     {this.props.articles.map((article, index) => (
                         <li key={index} className="news">
-                            <Link to={`/article/${index}`}>
+                            <Link to={`${this.props.match.params.topic}/article/${index}`}>
                                 <Article {...article}/>
                             </Link>
                         </li>
@@ -39,7 +39,7 @@ class Main extends Component {
 }
 
 Main.propTypes = {
-    articles: PropTypes.array
+    articles: PropTypes.arrayOf(PropTypes.shape(Article.propTypes))
 };
 
 export default Main;
