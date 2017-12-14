@@ -3,37 +3,22 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
 import {Provider} from 'react-redux';
-import {createStore, applyMiddleware} from 'redux';
-import doLog from './reducer/doSomething';
+import {createStore, applyMiddleware, compose} from 'redux';
+import combineReducer from './reducer/combineReducer';
 import {dispatch} from 'redux';
 import {BrowserRouter as Router} from 'react-router-dom';
 import {AppContainer} from 'react-hot-loader';
 import createSagaMiddleware from 'redux-saga';
-import { fetchArticles } from "./sagas/saga";
+import rootSaga from "./sagas/saga";
 
-const initialState = {
-    articles: [
-        {
-            title: 'name',
-            url: 'vk.ru',
-            byline: 'somebody',
-            abstract: 'do-dod-dod-dooo'
-        }
-    ],
-    currentTopic: '',
-    topics: [
-        "World",
-        "Politics",
-        "Science",
-        "Technology",
-        "Books",
-        "Art"
-    ],
-};
+const initialState = {};
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(doLog, initialState, applyMiddleware(sagaMiddleware), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-sagaMiddleware.run(fetchArticles);
+const middleware = applyMiddleware(sagaMiddleware);
+
+const store = createStore(combineReducer, initialState, composeEnhancers(middleware));
+sagaMiddleware.run(rootSaga);
 export default store;
 
 const render = Component => {
@@ -50,6 +35,7 @@ const render = Component => {
 };
 
 render(App);
+
 if (module.hot) {
     module.hot.accept('./components/App', () => {
         render(App)
