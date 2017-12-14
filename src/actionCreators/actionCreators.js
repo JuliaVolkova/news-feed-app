@@ -1,24 +1,21 @@
-export const doExample = (id) => ({
-    type: 'TYPE_SOMETHING',
-    id
+export const getArticles = topic => ({
+    type: 'GET_ARTICLES',
+    topic
 });
 
-export const getNewsByTopic = topic => {
-    return {
-        type: 'SECTION_TYPE',
-        topic
-    };
-};
+export const articlesToStore = (articles = []) => ({
+    type: 'ARTICLES_TO_STORE',
+    articles
+});
 
-export const watchNewsItem = (id) => {
+export const watchNewsItem = id => {
     return {
         type: 'WATCH_NEWS',
-        id,
+        id
     };
 };
 
 export const initializeRequest = () => ({
     type: 'REQUEST_INITIALIZED'
 });
-
 
