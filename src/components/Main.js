@@ -21,12 +21,11 @@ class Main extends Component {
     render() {
         return (
             <div className="news-wrapper">
-                <h2>top news</h2>
                 <ul className="news-grid">
                     {this.props.articles.map((article, index) => (
                         <li key={index} className="news">
-                            <Link to={`${this.props.match.params.topic}/article/${index}`}>
-                                <Article {...article}/>
+                            <Link to={`${this.props.match.params.topic}/article/${index}`} className="article">
+                                <Article {...article} className="article-list-item"/>
                             </Link>
                         </li>
                     ))}

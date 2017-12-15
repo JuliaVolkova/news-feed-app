@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Article = ({title, url, byline, abstract, published_date, media}) => (
-    <article>
+    <article className="article-list-item">
         <img {...media}/>
-        <p>{title}</p>
-        <cite>{byline}</cite>
+        <h2 className="article-title">{title}</h2>
+        <cite className="author">{byline}</cite>
     </article>
 );
 

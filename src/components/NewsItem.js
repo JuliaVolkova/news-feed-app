@@ -6,8 +6,8 @@ const NewsItem = ({title, url, byline, abstract, published_date, media}) => (
         <h2>{title}</h2>
         <img {...media} />
         <p className="description">{abstract}</p>
-            <cite className="author">{byline}</cite>
-            <time className="published-date"> {published_date} </time>
+        <cite className="author">{byline}</cite>
+        <time className="published-date"> {published_date} </time>
         <a href={url} className="news-item-link">Read more</a>
     </article>
 );

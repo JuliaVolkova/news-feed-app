@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Link from "react-router-dom/es/Link";
 
-const topics = [
+export const topics = [
     'All-sections',
     'World',
     'Politics',
@@ -14,11 +14,11 @@ const topics = [
 
 export const Header = () => (
     <nav className='header-wrapper'>
-        <h1>news feed</h1>
-        <p>Read top news for free</p>
+        <h1 className="main-title">news feed</h1>
+        <p className="welcome-words">Stay tuned and read top news for free!</p>
         <ul className='main-navigation'>
             {topics.map((topic, index) => (
-                    <li key={index}><Link to={`/${topic.toLowerCase()}`}>{topic}</Link></li>
+                    <li key={index} className="navigation-item"><Link to={`/${topic.toLowerCase()}`}>{topic}</Link></li>
                 )
             )}
         </ul>
