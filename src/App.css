@@ -17,7 +17,7 @@ a:focus,
 a:active {
     color: darkturquoise;
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 article img {
@@ -172,6 +172,7 @@ footer a {
 footer img {
     width: 100%;
 }
+
 .not-found-text {
     font-size: 1.3em;
 }
