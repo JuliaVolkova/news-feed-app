@@ -148,15 +148,23 @@ article img {
     color: indigo;
 }
 
-.footer {
-    position: sticky;
+footer {
     display: flex;
     flex-direction: column-reverse;
+    align-items: center;
     margin: 3%;
     padding: 1%;
     border-top: 0.5em solid darkturquoise;
 }
 
+footer a {
+    /*flex: 0 0 100px;*/
+    width: 30%;
+}
+
+footer img {
+    width: 100%;
+}
 .not-found-text {
     font-size: 1.3em;
 }
