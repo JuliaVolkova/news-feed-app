@@ -14,7 +14,7 @@ export const topics = [
 
 export const Header = () => (
     <nav className='header-wrapper'>
-        <h1 className="main-title">news feed</h1>
+        <a href="/"><h1 className="main-title">news feed</h1></a>
         <p className="welcome-words">Stay tuned and read top news for free!</p>
         <ul className='main-navigation'>
             {topics.map((topic, index) => (
