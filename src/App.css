@@ -85,7 +85,9 @@ article img {
     color: white;
 }
 
-.news-grid .news:hover {
+.news-grid .news:hover,
+.news-grid .news:focus,
+.news-grid .news:active {
     background-color: darkturquoise;
     color: white;
 }
@@ -109,7 +111,7 @@ article img {
     align-items: center;
     margin: 5% 10%;
     padding: 1%;
-    border: 0.05em solid darkturquoise;
+    border: 0.07em solid darkturquoise;
     border-radius: 8px;
 }
 
