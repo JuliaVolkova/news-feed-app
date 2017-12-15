@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 const NewsItem = ({title, url, byline, abstract, published_date, media}) => (
     <article className="current-article">
-        <h3>{title}</h3>
-        <img {...media}/>
-        <time>дата публикации: {published_date} </time>
-        <p>{abstract}</p>
-        <a href={url}>Read more</a>
-        <cite>{byline}</cite>
+        <h2>{title}</h2>
+        <img {...media} />
+        <p className="description">{abstract}</p>
+            <cite className="author">{byline}</cite>
+            <time className="published-date"> {published_date} </time>
+        <a href={url} className="news-item-link">Read more</a>
     </article>
 );
 
