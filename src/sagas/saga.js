@@ -13,7 +13,7 @@ function resultToArticle({title, url, byline, abstract, published_date, media}) 
         })
         .map(m => m.pop())
         .map(({url, width, height}) => ({src: url, width, height, alt}))
-        .orElse({src: 'default_url', width: 200, height: 200, alt});
+        .orElse({src: '/random-picture.jpg', width: 200, height: 200, alt});
     return {title, url, byline, abstract, published_date, media: picture}
 }
 
