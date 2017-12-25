@@ -3,7 +3,7 @@ import {articlesToStore, articleToStore} from '../actionCreators/actionCreators'
 import {fromNullable} from '../utils/option';
 
 
-function resultToArticle({title, url, byline, abstract, published_date, media}) {
+function resultToArticle({id, title, url, byline, abstract, published_date, media}) {
     let alt = 'No media presented';
     const picture = fromNullable(media)
         .map(m => m[0])
@@ -14,7 +14,7 @@ function resultToArticle({title, url, byline, abstract, published_date, media}) 
         .map(m => m.pop())
         .map(({url, width, height}) => ({src: url, width, height, alt}))
         .orElse({src: '/random-picture.jpg', width: 200, height: 200, alt});
-    return {title, url, byline, abstract, published_date, media: picture}
+    return {id, title, url, byline, abstract, published_date, media: picture}
 }
 
 export function* fetchArticles(action) {
@@ -39,12 +39,23 @@ export function* fetchArticle(action) {
     yield put(articleToStore(article));
 }
 
+export function* getComments(action){
+    localStorage.getItem();
+}
+
+export function* addComment(action) {
+    const comments = [];
+    comments.concat(action.comment);
+    localStorage.setItem('comments', JSON.stringify(comments));
+}
+
 export function* waitGetArticles() {
     yield takeEvery('GET_ARTICLES', fetchArticles);
 }
 
 export function* waitWatchArticle() {
     yield takeEvery('WATCH_NEWS', fetchArticle);
+    yield takeEvery('GET_COMMENTS', getComments);
 }
 
 export default function* rootSaga() {
