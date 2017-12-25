@@ -21,6 +21,20 @@ export const watchNewsItem = (id, topic) => {
     };
 };
 
+export const addNewComment = (comment) => {
+    return {
+        type: 'ADD_COMMENT',
+        comment
+    };
+};
+
+export const getComments = (comments) => {
+    return {
+        type: 'GET_COMMENTS',
+        comments
+    };
+};
+
 export const initializeRequest = () => ({
     type: 'REQUEST_INITIALIZED'
 });
