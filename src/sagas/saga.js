@@ -1,5 +1,5 @@
 import {all, put, takeEvery} from 'redux-saga/effects';
-import {articlesToStore, articleToStore} from '../actionCreators/actionCreators';
+import {articlesToStore, articleToStore, getComments} from '../actionCreators/actionCreators';
 import {fromNullable} from '../utils/option';
 
 
@@ -39,14 +39,16 @@ export function* fetchArticle(action) {
     yield put(articleToStore(article));
 }
 
-export function* getComments(action){
-    localStorage.getItem();
+export function* fetchComments(action){
+    localStorage.getItem(action.articleId);
 }
 
 export function* addComment(action) {
-    const comments = [];
-    comments.concat(action.comment);
-    localStorage.setItem('comments', JSON.stringify(comments));
+    const comments = JSON.parse(localStorage.getItem(action.articleId) || '[]');
+    console.log('In localStorage', comments);
+    comments.push(action.comment);
+    localStorage.setItem(action.articleId, JSON.stringify(comments));
+    yield put(getComments(comments));
 }
 
 export function* waitGetArticles() {
@@ -55,13 +57,18 @@ export function* waitGetArticles() {
 
 export function* waitWatchArticle() {
     yield takeEvery('WATCH_NEWS', fetchArticle);
-    yield takeEvery('GET_COMMENTS', getComments);
+    yield takeEvery('GET_COMMENTS', fetchComments);
+}
+
+export function* waitAddComment() {
+    yield takeEvery('ADD_COMMENT', addComment);
 }
 
 export default function* rootSaga() {
     yield all([
         waitGetArticles(),
-        waitWatchArticle()
+        waitWatchArticle(),
+        waitAddComment()
     ]);
 }
 
