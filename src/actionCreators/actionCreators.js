@@ -21,17 +21,18 @@ export const watchNewsItem = (id, topic) => {
     };
 };
 
-export const addNewComment = (comment) => {
+export const addNewComment = (articleId, comment) => {
     return {
         type: 'ADD_COMMENT',
+        articleId,
         comment
     };
 };
 
-export const getComments = (comments) => {
+export const getComments = (id) => {
     return {
         type: 'GET_COMMENTS',
-        comments
+        id
     };
 };
 
