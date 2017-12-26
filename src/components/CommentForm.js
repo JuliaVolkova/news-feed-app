@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {addNewComment} from "../actionCreators/actionCreators";
 
 class CommentForm extends Component {
     constructor(props) {
